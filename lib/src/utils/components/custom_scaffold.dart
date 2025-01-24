@@ -1,4 +1,4 @@
- import 'package:dogs/src/utils/exports.dart';
+import 'package:dogs/src/utils/exports.dart';
 
 class CustomScaffold extends StatelessWidget {
   const CustomScaffold({super.key, this.body, this.title});

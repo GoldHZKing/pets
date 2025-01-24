@@ -1,15 +1,15 @@
 import 'package:dogs/src/utils/exports.dart';
 
-
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown(
-      this.label, {
-        this.hint,
-        super.key,
-        required this.provider,this.validator,
-        this.onChange,
-        required this.items,
-      });
+    this.label, {
+    this.hint,
+    super.key,
+    required this.provider,
+    this.validator,
+    this.onChange,
+    required this.items,
+  });
 
   final AddPetDetailsProvider provider;
   final void Function(DropdownModel?)? onChange;
@@ -27,7 +27,10 @@ class CustomDropDown extends StatelessWidget {
         CustomText(
           label,
         ),
-        DropdownButtonFormField(  isDense: true, dropdownColor: Colors.white, validator: validator,
+        DropdownButtonFormField(
+          isDense: true,
+          dropdownColor: Colors.white,
+          validator: validator,
           icon: Icon(
             Icons.keyboard_arrow_down_rounded,
             color: Colors.black,
@@ -36,7 +39,8 @@ class CustomDropDown extends StatelessWidget {
           hint: CustomText(
             hint ?? '',
             color: AppData.textColorHint,
-            fontSize: 15,fontWeight: FontWeight.w500,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
           ),
           items: items.map((DropdownModel type) {
             return DropdownMenuItem(
@@ -49,9 +53,13 @@ class CustomDropDown extends StatelessWidget {
           }).toList(),
           onChanged: onChange,
           decoration: InputDecoration(
-              filled: true,fillColor: Colors.grey.shade50,
+              filled: true,
+              fillColor: Colors.grey.shade50,
               focusedBorder: customBorder(),
-              enabledBorder: customBorder(), isDense: true,contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 12),
+              enabledBorder: customBorder(),
+              isDense: true,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               border: customBorder()),
         ),
       ],

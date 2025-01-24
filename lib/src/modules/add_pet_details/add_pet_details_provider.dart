@@ -1,9 +1,6 @@
-
- import 'package:dogs/src/utils/exports.dart';
-
+import 'package:dogs/src/utils/exports.dart';
 
 class AddPetDetailsProvider extends ChangeNotifier {
-  AddPetDetailsProvider() : super() {}
   DropdownModel? selectedPetType;
   DropdownModel? selectedGender;
   XFile? pickedImage;
@@ -46,31 +43,24 @@ class AddPetDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? petNameValidation(String? data) =>
-      data == null || data
-          .trim()
-          .isEmpty
-          ? 'Please enter the your pet name'
-          : null;
+  String? petNameValidation(String? data) => data == null || data.trim().isEmpty
+      ? 'Please enter the your pet name'
+      : null;
 
   String? petOwnerNameValidation(String? data) =>
-      data == null || data
-          .trim()
-          .isEmpty
+      data == null || data.trim().isEmpty
           ? 'Please enter the pet owner name'
           : null;
 
   String? locationValidation(String? data) =>
-      data == null || data
-          .trim()
-          .isEmpty ? 'Please enter location' : null;
+      data == null || data.trim().isEmpty ? 'Please enter location' : null;
 
   String? typeOfPetValidation(DropdownModel? data) =>
       data == null ? 'Please Select the type of pet' : null;
 
   String? genderValidation(DropdownModel? data) =>
       data == null ? 'Please Select gender' : null;
-  String?pickedImageWarning;
+  String? pickedImageWarning;
 
   validation() async {
     if (submitBtnPressed) return;
@@ -81,10 +71,7 @@ class AddPetDetailsProvider extends ChangeNotifier {
     notifyListeners();
     if (formKey.currentState!.validate()) {
       try {
-        await _sendToServer().then((a) =>
-        {
-          submitBtnPressed = false
-        });
+        await _sendToServer().then((a) => {submitBtnPressed = false});
       } catch (e) {
         submitBtnPressed = false;
       }
@@ -102,35 +89,37 @@ class AddPetDetailsProvider extends ChangeNotifier {
       "location": location.text.trim(),
       "image": await MultipartFile.fromFile(
         pickedImage!.path,
-        filename: pickedImage!
-            .path
-            .split('/')
-            .last,
+        filename: pickedImage!.path.split('/').last,
       ),
     };
-    await HttpServices.postMethod(path: EndPoints.addPets, body: body)?.then((
-        Response a) {
-
+    await HttpServices.postMethod(path: EndPoints.addPets, body: body)
+        ?.then((Response a) {
       if (a.statusCode == 200) {
-        navigatorKey.currentContext!.read<DisplayPetDetailsProvider>().getPetDetails();
+        navigatorKey.currentContext!
+            .read<DisplayPetDetailsProvider>()
+            .getPetDetails();
 
         Navigator.pop(navigatorKey.currentContext!);
-        ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
-            SnackBar(content: CustomText(
-                'Success.',color: Colors.white,)));
+        ScaffoldMessenger.of(navigatorKey.currentContext!)
+            .showSnackBar(SnackBar(
+                content: CustomText(
+          'Success.',
+          color: Colors.white,
+        )));
+      } else {
+        ScaffoldMessenger.of(navigatorKey.currentContext!)
+            .showSnackBar(SnackBar(
+                content: CustomText(
+          'Something went wrong.Please try again later.',
+          color: Colors.white,
+        )));
       }
-      else {
-        ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
-            SnackBar(content: CustomText(
-                'Something went wrong.Please try again later.',color: Colors.white,)));
-      }
-    }).onError((a,s){
-      ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
-          SnackBar(content: CustomText(
-            'Something went wrong.Please try again later.',color: Colors.white,)));
+    }).onError((a, s) {
+      ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
+          content: CustomText(
+        'Something went wrong.Please try again later.',
+        color: Colors.white,
+      )));
     });
-
-   }
+  }
 }
-
-

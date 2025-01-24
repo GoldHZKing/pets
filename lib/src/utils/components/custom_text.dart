@@ -1,8 +1,14 @@
 import 'package:dogs/src/utils/exports.dart';
 
 class CustomText extends StatelessWidget {
-  const CustomText(this.data,
-      {super.key, this.color, this.fontSize, this.fontWeight,this.overflow,});
+  const CustomText(
+    this.data, {
+    super.key,
+    this.color,
+    this.fontSize,
+    this.fontWeight,
+    this.overflow,
+  });
 
   final String data;
   final Color? color;
@@ -16,7 +22,8 @@ class CustomText extends StatelessWidget {
       data,
       style: TextStyle(
           color: color ?? Colors.black,
-          fontSize: fontSize ?? 15, overflow:overflow,
+          fontSize: fontSize ?? 15,
+          overflow: overflow,
           fontWeight: fontWeight ?? FontWeight.w500),
     );
   }

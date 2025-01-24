@@ -11,11 +11,10 @@ class HttpServices {
 
   static Future<Response>? postMethod({
     required String path,
-    required Map<String,dynamic> body,
+    required Map<String, dynamic> body,
   }) async {
-    FormData formData=FormData.fromMap(body);
+    FormData formData = FormData.fromMap(body);
 
-  return  await _deo.post(path, data: formData, options: _options);
+    return await _deo.post(path, data: formData, options: _options);
   }
-
 }

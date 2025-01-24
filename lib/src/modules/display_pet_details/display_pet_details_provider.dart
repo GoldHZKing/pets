@@ -1,33 +1,35 @@
 import 'package:dogs/src/utils/exports.dart';
 import 'package:flutter/cupertino.dart';
 
-
 class DisplayPetDetailsProvider extends ChangeNotifier {
   DisplayPetDetailsProvider() : super() {
     _initialFunctions();
   }
 
   PetDetailsModel? petDetailsModel;
-bool isError=false;
+  bool isError = false;
+
   _initialFunctions() async {
- await  getPetDetails();
+    await getPetDetails();
   }
-getPetDetails()async{
-  try {
-    isError=false;
-    Response? response =
-        await HttpServices.getMethod(path: EndPoints.getPetDetails);
-    if (response != null && response.statusCode == 200) {
-      petDetailsModel = PetDetailsModel.fromJson(response.data);
+
+  getPetDetails() async {
+    try {
+      isError = false;
+      Response? response =
+          await HttpServices.getMethod(path: EndPoints.getPetDetails);
+      if (response != null && response.statusCode == 200) {
+        petDetailsModel = PetDetailsModel.fromJson(response.data);
+        notifyListeners();
+      }
+    } catch (e, a) {
+      isError = true;
+      petDetailsModel = null;
+      debugPrint(a.toString());
       notifyListeners();
     }
-  } catch (e, a) {
-    isError=true;
-    petDetailsModel = null;
-    debugPrint(a.toString());
-    notifyListeners();
   }
-}
+
   onTapAddNewPet() {
     Navigator.push(
         navigatorKey.currentContext!,

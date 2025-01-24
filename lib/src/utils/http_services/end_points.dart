@@ -3,5 +3,5 @@ class EndPoints {
 
   static String addPets = '$_baseUrl/register/form';
 
-  static String getPetDetails= '$_baseUrl/get/form';
+  static String getPetDetails = '$_baseUrl/get/form';
 }

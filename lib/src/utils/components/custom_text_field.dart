@@ -2,11 +2,12 @@ import 'package:dogs/src/utils/exports.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
-      this.label, {
-        this.hint,
-        this.controller,
-        super.key,this.validator,
-      });
+    this.label, {
+    this.hint,
+    this.controller,
+    super.key,
+    this.validator,
+  });
 
   final String label;
   final String? hint;
@@ -20,14 +21,17 @@ class CustomTextField extends StatelessWidget {
       spacing: 5,
       children: [
         CustomText(label),
-        TextFormField( validator: validator,
+        TextFormField(
+          validator: validator,
           controller: controller,
           decoration: InputDecoration(
               hintText: hint,
               filled: true,
               fillColor: Colors.grey.shade50,
               border: customBorder(),
-              enabledBorder: customBorder(), contentPadding: EdgeInsets.symmetric(vertical: 12,horizontal: 20),
+              enabledBorder: customBorder(),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 12, horizontal: 20),
               focusedBorder: customBorder(borderColor: AppData.primaryColor)),
         ),
       ],

@@ -1,4 +1,3 @@
-
 import 'package:dogs/src/utils/exports.dart';
 
 class DisplayPetDetailsPage extends StatelessWidget {
@@ -23,7 +22,8 @@ class DisplayPetDetailsPage extends StatelessWidget {
                   return v == null
                       ? Center(
                           child: CircularProgressIndicator(
-                          color: AppData.primaryColor,  strokeWidth: 2,
+                          color: AppData.primaryColor,
+                          strokeWidth: 2,
                         ))
                       : SingleChildScrollView(
                           child: Column(
@@ -167,14 +167,18 @@ class NameAndLocationWidget extends StatelessWidget {
       children: [
         CustomText(
           data.petName!,
-          overflow:  TextOverflow.ellipsis,
+          overflow: TextOverflow.ellipsis,
         ),
         Row(
           spacing: 5,
           children: [
-            Icon(Icons.location_on_outlined,size: 18,),
+            Icon(
+              Icons.location_on_outlined,
+              size: 18,
+            ),
             CustomText(
-              data.location!, overflow:  TextOverflow.ellipsis,
+              data.location!,
+              overflow: TextOverflow.ellipsis,
               color: AppData.textColorHint,
               fontSize: 13,
             ),
@@ -219,7 +223,9 @@ class ImageWidget extends StatelessWidget {
             right: 0,
             child: CustomIconButton(
               data.gender?.toLowerCase() == 'male' ? Icons.male : Icons.female,
-              iconColor: data.gender?.toLowerCase() == 'male' ? Colors.pink : Colors.blue,
+              iconColor: data.gender?.toLowerCase() == 'male'
+                  ? Colors.pink
+                  : Colors.blue,
               bgColor: data.gender?.toLowerCase() == 'male'
                   ? Colors.pink.shade50
                   : Colors.blue.shade50,
