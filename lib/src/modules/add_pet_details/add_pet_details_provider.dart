@@ -124,6 +124,10 @@ class AddPetDetailsProvider extends ChangeNotifier {
             SnackBar(content: CustomText(
                 'Something went wrong.Please try again later.',color: Colors.white,)));
       }
+    }).onError((a,s){
+      ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
+          SnackBar(content: CustomText(
+            'Something went wrong.Please try again later.',color: Colors.white,)));
     });
 
    }
